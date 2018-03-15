@@ -10,11 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ms-dicover</module>
+        <module>ms-gateway</module>
     </modules>
 
     <properties>
-        <spring.cloud.version>Dalston.SR2</spring.cloud.version>
-        <spring.boot.version>1.4.1.RELEASE</spring.boot.version>
+        <spring.cloud.version>Dalston.RELEASE</spring.cloud.version>
+        <spring.boot.version>1.5.3.RELEASE</spring.boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>

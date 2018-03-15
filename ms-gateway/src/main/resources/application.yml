@@ -1,0 +1,17 @@
+server:
+  port: 8769
+
+spring:
+  application:
+    name: ms-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://@eureka.server.host@:@eureka.server.port@/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    user: /user/*
+
+
