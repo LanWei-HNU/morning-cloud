@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 
+table自定义property:
+1. javers, 不加则默认为false, false则为不保存, true则系统会用javers自动保存该表的变化，。
+2. javersIgnoreColumns, mbg插件将为这些列加上javers@DiffIgnore, 这样javers将不保存该列的变化，多个列用逗号隔开,
+   javersIncludeColumns, mbg插件将为table中其他的列加上javers@DiffIgnore, 这样javers将只保存这些列的变化，多个列用逗号隔开,
+3. versionLocker, 更新时是否自动使用乐观锁，默认为true, 如不使用乐观锁，则设置为false.
+ -->
+
+
+<generatorConfiguration>
+    <!-- <classPathEntry location="D:/newWorkspace/Beta/mbg/src/main/java" /> -->
+    <!-- <classPathEntry location="D:/newWorkspace/Beta/mbgPlugin/target/mbgPlugin-1.0.0.jar" /> -->
+    <context id="mysqlTables" introspectedColumnImpl="org.lanwei.morning.common.MorningIntrospectedColumn"> <!-- MyBatis3 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 由于手写mapper中有update, insert, delete语句，暂时去掉缓存配置 -->
+        <!--
+        <plugin type="org.mybatis.generator.plugins.CachePlugin">
+        <property name="cache_type" value="org.mybatis.caches.ehcache.EhcacheCache"/>
+        </plugin>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+        -->
+        <plugin type="mbg.plugin.MySQLPaginationPlugin"></plugin>
+        <plugin type="mbg.plugin.SwaggerApiModelPropertyPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+        <commentGenerator type="mbg.plugin.MyCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${mybatis.generator.jdbcDriver}"
+                        connectionURL="${mybatis.generator.jdbcURL}${mybatis.generator.schema}"
+                        userId="${mybatis.generator.jdbcUserId}" password="${mybatis.generator.jdbcPassword}"/>
+
+        <!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->
+        <javaModelGenerator targetPackage="org.lanwei.morning.model" targetProject="MAVEN">
+            <!-- <property name="enableSubPackages" value="true" /> -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--对应的xml mapper文件 -->
+        <sqlMapGenerator targetPackage="org.lanwei.morning.mapping" targetProject="MAVEN">
+            <property name="overwrite" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 对应的dao接口 -->
+        <javaClientGenerator type="com.nfd.common.mybatis.NfdSimpleJavaClientGenerator"
+                             targetPackage="org.lanwei.morning.dao" targetProject="MAVEN">
+            <!-- <property name="enableSubPackages" value="true" /> -->
+            <!-- <property name="rootInterface" value="com.nongfadai.lambda.dao.BaseDao"/> -->
+        </javaClientGenerator>
+
+
+
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <!-- 框架会自动为table生成alias, 人为指定将无效, 生成的命名规则为首字母+最后整个单词，如sys_param_code别名应为spcode -->
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    </context>
+</generatorConfiguration>
