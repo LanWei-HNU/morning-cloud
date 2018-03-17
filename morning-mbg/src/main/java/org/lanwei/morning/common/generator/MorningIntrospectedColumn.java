@@ -1,14 +1,16 @@
-package org.lanwei.morning.common;
+package org.lanwei.morning.common.generator;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.config.TableConfiguration;
 
 /**
- * zidong 自动生成表别名，以便重用mapper文件
+ * 自动生成表别名，以便重用mapper文件
+ *
  * @author lanwei 2018-03-17
  */
 public class MorningIntrospectedColumn extends IntrospectedColumn {
+
     private IntrospectedTable introspectedTable;
 
     @Override

@@ -1,0 +1,1 @@
+morning-mbg: 集成了mybatis generator,用于动态生成数据库对应的model,dao和mapper
