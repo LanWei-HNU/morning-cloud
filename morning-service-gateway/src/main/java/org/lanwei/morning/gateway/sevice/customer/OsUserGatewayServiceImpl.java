@@ -16,6 +16,9 @@ public class OsUserGatewayServiceImpl implements OsUserGatewayService {
 
     @Override
     public Integer insertUser(OsUser user) {
-        return 22222;
+        OsUser r = new OsUser();
+        r.setEmail("11123");
+        osUserService.insertSelective(r);
+        return 0000;
     }
 }

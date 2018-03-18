@@ -56,22 +56,23 @@
         <!-- 配置监控统计拦截的filters
         <property name="filters" value="stat" />   -->
         <!-- 数据库密码加密码 -->
-        <property name="filters" value="config,stat"/>
-        <property name="connectionProperties" value="config.decrypt=true"/>
+        <!--<property name="filters" value="config,stat"/>-->
+        <!--<property name="connectionProperties" value="config.decrypt=true"/>-->
+        <!---->
         <!-- 定制化输出log -->
         <!--
         -->
-        <property name="proxyFilters">
+<!--        <property name="proxyFilters">
             <list>
                 <ref bean="log-filter"/>
             </list>
-        </property>
+        </property>-->
     </bean>
-    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+<!--    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
         <property name="statementExecutableSqlLogEnable" value="true"/>
-        <!-- 关闭 pstmt创建以后打印sql -->
+        &lt;!&ndash; 关闭 pstmt创建以后打印sql &ndash;&gt;
         <property name="statementPrepareAfterLogEnabled" value="false"/>
-    </bean>
+    </bean>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

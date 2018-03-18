@@ -66,7 +66,7 @@ table自定义property:
 
 
         <!-- 商城客户相关table -->
-        <table catalog="${mybatis.generator.schema}" tableName="os_user">
+        <table catalog="${mybatis.generator.schema}" tableName="os_user" alias="ouser">
             <generatedKey column="user_id" sqlStatement="JDBC"/>
         </table>
 

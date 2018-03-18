@@ -17,6 +17,7 @@
         <module>morning-customer-service</module>
         <module>morning-test</module>
         <module>morning-os-web</module>
+        <module>morning-cms-web</module>
     </modules>
 
     <properties>
@@ -98,11 +99,8 @@
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis.spring.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
+
+
 
 
             <!-- druid -->
