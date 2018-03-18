@@ -65,6 +65,12 @@ table自定义property:
         </javaClientGenerator>
 
 
+        <!-- 商城客户相关table -->
+        <table catalog="${mybatis.generator.schema}" tableName="os_user">
+            <generatedKey column="user_id" sqlStatement="JDBC"/>
+        </table>
+
+
         <table catalog="${mybatis.generator.schema}" tableName="cms_config">
             <generatedKey column="config_id" sqlStatement="JDBC"/>
         </table>

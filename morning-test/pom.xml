@@ -9,14 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>morning-service-gateway</artifactId>
+    <artifactId>morning-test</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.lanwei</groupId>
-            <artifactId>morning-customer-service</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>

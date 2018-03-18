@@ -1,0 +1,21 @@
+package org.lanwei.morning.gateway.sevice.customer;
+
+import org.lanwei.morning.model.OsUser;
+import org.lanwei.morning.service.user.OsUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author lanwei 2018-03-18
+ */
+@Service
+public class OsUserGatewayServiceImpl implements OsUserGatewayService {
+
+    @Autowired
+    private OsUserService osUserService;
+
+    @Override
+    public Integer insertUser(OsUser user) {
+        return 22222;
+    }
+}

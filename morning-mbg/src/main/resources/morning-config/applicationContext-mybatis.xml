@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close" primary="true">
+        <property name="url" value="jdbc:mysql://localhost:3306/morning"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${spring.druid.initialSize:1}"/>
+        <property name="minIdle" value="${spring.druid.minIdle:1}"/>
+        <property name="maxActive" value="${spring.druid.maxActive:100}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+
+        <!-- 对于长时间不使用的连接强制关闭  -->
+        <property name="removeAbandoned" value="false"/>
+        <!-- 超过3分钟开始关闭空闲连接  -->
+        <property name="removeAbandonedTimeout" value="180"/>
+
+        <!-- 将当前关闭动作记录到日志 -->
+        <property name="logAbandoned" value="false"/>
+
+
+        <!-- <property name="removeAbandoned" value="true"></property>
+        <property name="removeAbandonedTimeoutMillis" value="60000"></property>
+        <property name="logAbandoned" value="false"></property> -->
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="20"/>
+
+        <!-- 配置监控统计拦截的filters
+        <property name="filters" value="stat" />   -->
+        <!-- 数据库密码加密码 -->
+        <property name="filters" value="config,stat"/>
+        <property name="connectionProperties" value="config.decrypt=true"/>
+        <!-- 定制化输出log -->
+        <!--
+        -->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="statementExecutableSqlLogEnable" value="true"/>
+        <!-- 关闭 pstmt创建以后打印sql -->
+        <property name="statementPrepareAfterLogEnabled" value="false"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:org/lanwei/morning/**/mapping/**/*.xml"/>
+        <property name="configLocation" value="classpath:/morning-config/mybatis-config.xml"/>
+        <!--<property name="typeAliasesPackage" value="com.mengdee.manager.domain"/>-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.lanwei.morning.dao,org.lanwei.morning.**.dao"/>
+        <!-- 这里不能使用的配置 name=sqlSessionFactory 这样子会导致 数据源中spring注入项还未注入就初始化了数据源 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="globalRollbackOnParticipationFailure" value="false"/>
+    </bean>
+
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <!-- 注解方式配置事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/><!-- LogServiceImpl使用到注解 -->
+
+    <!-- 拦截器方式配置事务 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="create*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="update*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="delete*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="save*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/><!-- 保存的业务操作 -->
+            <tx:method name="submit*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/><!-- 提交的业务操作 -->
+            <tx:method name="import*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/><!-- 各种数据表导入操作 -->
+            <tx:method name="write*" propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/><!-- 各种数据表导入操作 -->
+
+
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+
+        </tx:attributes>
+    </tx:advice>
+    <!-- Spring aop事务管理 -->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="transactionPointcut"
+                      expression="execution(* org.lanwei.morning..service..*Impl.*(..))"/>
+        <aop:advisor pointcut-ref="transactionPointcut"
+                     advice-ref="transactionAdvice"/>
+    </aop:config>
+
+</beans>

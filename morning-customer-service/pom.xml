@@ -9,12 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>morning-service-gateway</artifactId>
+    <artifactId>morning-customer-service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.lanwei</groupId>
-            <artifactId>morning-customer-service</artifactId>
+            <artifactId>morning-model</artifactId>
+        </dependency>
+
+        <!-- spring 相关-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
 

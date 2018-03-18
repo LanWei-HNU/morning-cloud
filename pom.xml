@@ -14,6 +14,9 @@
         <module>morning-mbg</module>
         <module>morning-model</module>
         <module>morning-service-gateway</module>
+        <module>morning-customer-service</module>
+        <module>morning-test</module>
+        <module>morning-os-web</module>
     </modules>
 
     <properties>
@@ -25,13 +28,13 @@
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <mybatis.version>3.4.0</mybatis.version>
         <mybatis.spring.version>1.3.0</mybatis.spring.version>
+        <alibaba.druid.version>1.1.2</alibaba.druid.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.1.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <version>1.5.3.RELEASE</version>
     </parent>
 
 
@@ -43,6 +46,28 @@
                 <artifactId>morning-mbg</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.lanwei</groupId>
+                <artifactId>morning-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lanwei</groupId>
+                <artifactId>morning-customer-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lanwei</groupId>
+                <artifactId>morning-service-gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lanwei</groupId>
+                <artifactId>morning-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -62,18 +87,30 @@
                 <artifactId>mybatis-generator-core</artifactId>
                 <version>${mybatis.generator.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>1.2.0</version>
-            </dependency>
             <!-- mybatis -->
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${alibaba.druid.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
