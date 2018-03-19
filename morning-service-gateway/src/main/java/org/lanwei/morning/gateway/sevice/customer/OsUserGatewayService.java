@@ -1,6 +1,6 @@
 package org.lanwei.morning.gateway.sevice.customer;
 
-import org.lanwei.morning.model.OsUser;
+import org.lanwei.morning.model.os.OsUser;
 
 /**
  * @author lanwei 2018-03-18

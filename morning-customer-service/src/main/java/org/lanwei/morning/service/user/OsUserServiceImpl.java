@@ -1,7 +1,7 @@
 package org.lanwei.morning.service.user;
 
-import org.lanwei.morning.dao.OsUserMapper;
-import org.lanwei.morning.model.OsUser;
+import org.lanwei.morning.dao.os.OsUserMapper;
+import org.lanwei.morning.model.os.OsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

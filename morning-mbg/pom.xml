@@ -12,10 +12,6 @@
     <artifactId>morning-mbg</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-        </dependency>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>

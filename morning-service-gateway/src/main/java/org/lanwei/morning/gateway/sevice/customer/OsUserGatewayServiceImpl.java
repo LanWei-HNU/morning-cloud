@@ -1,6 +1,6 @@
 package org.lanwei.morning.gateway.sevice.customer;
 
-import org.lanwei.morning.model.OsUser;
+import org.lanwei.morning.model.os.OsUser;
 import org.lanwei.morning.service.user.OsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

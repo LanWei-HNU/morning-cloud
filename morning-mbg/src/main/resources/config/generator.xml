@@ -15,8 +15,10 @@ table自定义property:
 <generatorConfiguration>
     <!-- <classPathEntry location="D:/newWorkspace/Beta/mbg/src/main/java" /> -->
     <!-- <classPathEntry location="D:/newWorkspace/Beta/mbgPlugin/target/mbgPlugin-1.0.0.jar" /> -->
-    <context id="mysqlTables"> <!-- MyBatis3 -->
-        <!--introspectedColumnImpl="org.lanwei.morning.common.MorningIntrospectedColumn"-->
+    <context id="mysqlTables"
+             introspectedColumnImpl="org.lanwei.morning.common.generator.MorningIntrospectedColumn"
+             targetRuntime="org.lanwei.morning.common.generator.IntrospectedTableMybatis3PackageFromPrefixImpl"> <!-- MyBatis3 -->
+
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 由于手写mapper中有update, insert, delete语句，暂时去掉缓存配置 -->
@@ -66,7 +68,7 @@ table自定义property:
 
 
         <!-- 商城客户相关table -->
-        <table catalog="${mybatis.generator.schema}" tableName="os_user" alias="ouser">
+        <table catalog="${mybatis.generator.schema}" tableName="os_user">
             <generatedKey column="user_id" sqlStatement="JDBC"/>
         </table>
 
@@ -75,7 +77,6 @@ table自定义property:
             <generatedKey column="config_id" sqlStatement="JDBC"/>
         </table>
 
-        <!-- 当前此配置未生效 2018年3月17日23:35:21-->
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <!-- 框架会自动为table生成alias, 人为指定将无效, 生成的命名规则为首字母+最后整个单词， -->
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
