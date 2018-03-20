@@ -42,6 +42,16 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- spring cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- morning module-->
             <dependency>
                 <groupId>org.lanwei</groupId>
@@ -74,14 +84,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!-- spring cloud-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <!-- mybatis generator -->
             <dependency>
@@ -106,15 +108,14 @@
                 <version>${mybatis.spring.version}</version>
             </dependency>
 
-
-
-
             <!-- druid -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${alibaba.druid.version}</version>
             </dependency>
+
+            
         </dependencies>
     </dependencyManagement>
 

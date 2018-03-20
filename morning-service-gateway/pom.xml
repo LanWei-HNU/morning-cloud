@@ -16,6 +16,11 @@
             <groupId>org.lanwei</groupId>
             <artifactId>morning-customer-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.lanwei</groupId>
+            <artifactId>morning-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
