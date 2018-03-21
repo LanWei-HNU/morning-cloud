@@ -1,8 +1,9 @@
-package org.lanwei.morning;
+package org.lanwei.morning.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.lanwei.morning.test.TestApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,9 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = TestApplication.class)
 public class MorningBaseSpringTest {
 
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Test
-    private void test() {
+    public void test() {
         System.out.println("&&&&&&&&&&&&&&&&&&&&");
+        logger.info("&&&&&&&&&&&&&&&&&&&&");
     }
 }
