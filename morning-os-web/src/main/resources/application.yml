@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: morning-os-web
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://@eureka.server.host@:@eureka.server.port@/eureka/
+    instance:
+        prefer-ip-address: true
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.config: DEBUG
+    org.lanwei: DEBUG
+#  pattern:
+#      level: rqId:%X{requestId} u:%X{user} %5p
