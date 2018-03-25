@@ -72,11 +72,6 @@ table自定义property:
             <generatedKey column="user_id" sqlStatement="JDBC"/>
         </table>
 
-
-        <table catalog="${mybatis.generator.schema}" tableName="cms_config">
-            <generatedKey column="config_id" sqlStatement="JDBC"/>
-        </table>
-
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <!-- 框架会自动为table生成alias, 人为指定将无效, 生成的命名规则为首字母+最后整个单词， -->
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
