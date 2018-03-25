@@ -1,8 +1,9 @@
-package org.lanwei.morning.os.security;
+package org.lanwei.morning.os.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.lanwei.morning.os.common.JSONResult;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +19,7 @@ import java.util.List;
  * @author lanwei 2018-03-23
  */
 public class TokenAuthenticationService {
-
+    
     static final long EXPIRATIONTIME = 432_000_000;     // 5天
 
     static final String SECRET = "P@ssw02d";            // JWT密码
@@ -66,10 +67,9 @@ public class TokenAuthenticationService {
 
             // 拿用户名
             String userName = claims.getSubject();
-
+            String authoritie = (String) claims.get("authorities");
             // 得到 权限（角色）
-            List<GrantedAuthority> authorities =
-                AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
+            List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(authoritie);
 
             // 返回验证令牌
             return userName != null ? new UsernamePasswordAuthenticationToken(userName, null, authorities) : null;

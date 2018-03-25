@@ -1,6 +1,10 @@
-package org.lanwei.morning.os.security;
+package org.lanwei.morning.os.common;
 
-import org.json.JSONObject;
+
+import org.lanwei.morning.utils.JsonUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author lanwei 2018-03-23
@@ -8,11 +12,10 @@ import org.json.JSONObject;
 public class JSONResult {
 
     public static String fillResultString(Integer status, String message, Object result) {
-        JSONObject jsonObject = new JSONObject() {{
-            put("status", status);
-            put("message", message);
-            put("result", result);
-        }};
-        return jsonObject.toString();
+        Map<Object, Object> map = new HashMap<>();
+        map.put("status", status);
+        map.put("message", message);
+        map.put("result", result);
+        return JsonUtils.toJson(map);
     }
 }

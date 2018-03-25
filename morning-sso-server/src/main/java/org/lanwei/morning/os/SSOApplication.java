@@ -10,9 +10,9 @@ import org.springframework.context.annotation.ImportResource;
 //@EnableEurekaClient
 @SpringBootApplication(scanBasePackages = {"org.lanwei.morning"})
 @ImportResource({"classpath*:morning-config/applicationContext-mybatis.xml"})
-public class OsWebApplication {
+public class SSOApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OsWebApplication.class, args);
+        SpringApplication.run(SSOApplication.class, args);
     }
 }

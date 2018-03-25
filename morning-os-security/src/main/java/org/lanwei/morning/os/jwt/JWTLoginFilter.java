@@ -1,6 +1,6 @@
-package org.lanwei.morning.os.security;
+package org.lanwei.morning.os.jwt;
 
-import org.json.JSONObject;
+import org.lanwei.morning.os.security.AccountCredentials;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -77,12 +77,12 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
      * @throws IOException
      * @throws ServletException
      */
-    @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-        AuthenticationException failed) throws IOException, ServletException {
-
-        response.setContentType("application/json");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getOutputStream().println(JSONResult.fillResultString(500, "Internal Server Error!!!", JSONObject.NULL));
-    }
+    //    @Override
+    //    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+    //        AuthenticationException failed) throws IOException, ServletException {
+    //
+    //        response.setContentType("application/json");
+    //        response.setStatus(HttpServletResponse.SC_OK);
+    //        response.getOutputStream().println(JSONResult.fillResultString(500, "user not found", ""));
+    //    }
 }

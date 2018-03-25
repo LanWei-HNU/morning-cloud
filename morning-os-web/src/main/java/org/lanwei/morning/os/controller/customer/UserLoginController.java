@@ -1,10 +1,10 @@
 package org.lanwei.morning.os.controller.customer;
 
-import org.lanwei.morning.gateway.sevice.customer.OsUserGatewayService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.lanwei.morning.utils.JsonUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 /**
  * 用户登陆相关控制器
@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pass")
 public class UserLoginController {
 
-    @Autowired
-    private OsUserGatewayService osUserGatewayService;
+    // 路由映射到/users
+    @RequestMapping(value = "/users", produces = "application/json;charset=UTF-8")
+    public String usersList() {
 
-    @GetMapping("/test")
-    public Integer test(Integer t) {
-        return osUserGatewayService.insertUser(null);
+        ArrayList<String> users = new ArrayList<String>() {{
+            add("freewolf");
+            add("tom");
+            add("jerry");
+        }};
+
+        return JsonUtils.toJson(users);
     }
+
 }

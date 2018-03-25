@@ -1,4 +1,4 @@
-package org.lanwei.morning.os;
+package org.lanwei.morning.os.security;
 
 /**
  * 负责存储用户名密码

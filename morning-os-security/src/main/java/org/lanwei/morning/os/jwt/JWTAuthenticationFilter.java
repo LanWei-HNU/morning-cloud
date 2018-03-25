@@ -1,4 +1,4 @@
-package org.lanwei.morning.os.security;
+package org.lanwei.morning.os.jwt;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

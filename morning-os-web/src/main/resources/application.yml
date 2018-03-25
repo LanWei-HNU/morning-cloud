@@ -16,7 +16,7 @@ eureka:
 logging:
   level:
     root: INFO
-    org.springframework.cloud.config: DEBUG
+    org.springframework: DEBUG
     org.lanwei: DEBUG
 #  pattern:
 #      level: rqId:%X{requestId} u:%X{user} %5p
