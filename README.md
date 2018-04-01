@@ -5,7 +5,7 @@ morning-cloud(Make jar no war)
 ===================
     1. 基础服务：
                  服务发现    已完成    ms-dicover: eureka
-                 内部路由    已完成    ms-gateway: zuul (目前正在考虑使用基于Spring Boot2.0 的Spring cloud gateway替代)
+                 内部路由    已完成    ms-gateway: zuul (目前正在考虑使用集成了reactor-netty的Spring cloud gateway替代)
                  配置中心    未完成    ms-config: 待选方案：携程Apollo或Spring cloud config
     2. 业务相关：
                  商城主站    已完成    morning-os-web: 面向C端的服务
